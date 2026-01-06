@@ -34,8 +34,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center">
-        <div className="mr-auto flex items-center gap-4 md:gap-10">
+      <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
+        <div className="flex items-center gap-4 md:gap-10">
           <Logo />
           <NavLinks className="hidden gap-6 md:flex" />
         </div>
@@ -53,13 +53,12 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="left">
                 <SheetHeader>
-                  <SheetTitle className="sr-only">Menu Principal</SheetTitle>
+                  <SheetTitle>
+                    <Logo />
+                  </SheetTitle>
                 </SheetHeader>
-                <div className="p-6">
-                  <Logo />
-                </div>
-                <NavLinks className="flex flex-col space-y-4 px-6" onLinkClick={() => setIsSheetOpen(false)} />
-                 <div className="p-6 mt-4">
+                <NavLinks className="mt-6 flex flex-col space-y-4 px-0" onLinkClick={() => setIsSheetOpen(false)} />
+                 <div className="mt-6">
                     <Button asChild className="w-full">
                         <Link href="/quote" onClick={() => setIsSheetOpen(false)}>Pedir Cotação</Link>
                     </Button>
