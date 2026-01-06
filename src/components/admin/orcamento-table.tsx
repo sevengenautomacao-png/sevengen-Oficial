@@ -65,7 +65,7 @@ export function OrcamentoTable({ orcamentos }: OrcamentoTableProps) {
                 </Badge>
               </TableCell>
               <TableCell className="hidden lg:table-cell">
-                {format(new Date(orcamento.submittedAt), "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR })}
+                {format(orcamento.submittedAt, "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR })}
               </TableCell>
               <TableCell className="text-right">
                 <DropdownMenu>
