@@ -38,12 +38,12 @@ export function OrcamentoTable({ orcamentos: initialOrcamentos }: OrcamentoTable
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
-    setOrcamentos(initialOrcamentos);
-  }, [initialOrcamentos]);
-
-  React.useEffect(() => {
     setIsClient(true);
   }, []);
+  
+  React.useEffect(() => {
+    setOrcamentos(initialOrcamentos);
+  }, [initialOrcamentos]);
 
   const handleAction = React.useCallback(async (action: () => Promise<any>, successMessage: string, errorMessage: string) => {
     try {
@@ -128,7 +128,7 @@ export function OrcamentoTable({ orcamentos: initialOrcamentos }: OrcamentoTable
                   </Badge>
                 </TableCell>
                 <TableCell className="hidden lg:table-cell">
-                  {isClient ? format(new Date(orcamento.submittedAt), "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR }) : new Date(orcamento.submittedAt).toLocaleDateString()}
+                  {isClient ? format(new Date(orcamento.submittedAt), "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR }) : '...'}
                 </TableCell>
                 <TableCell className="text-right">
                   <DropdownMenu>
