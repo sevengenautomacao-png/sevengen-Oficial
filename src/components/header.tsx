@@ -24,7 +24,7 @@ const NavLinks = ({ className, onLinkClick }: { className?: string; onLinkClick?
     <Link href="/#about" className="text-muted-foreground transition-colors hover:text-foreground" onClick={onLinkClick}>
       Sobre
     </Link>
-    <Link href="/quote" className="text-muted-foreground transition-colors hover:text-foreground" onClick={onLinkClick}>
+    <Link href="/orcamento" className="text-muted-foreground transition-colors hover:text-foreground" onClick={onLinkClick}>
       Contato
     </Link>
   </nav>
@@ -47,7 +47,7 @@ export function Header() {
         </div>
         <div className="flex items-center gap-2">
           <Button asChild className="hidden sm:inline-flex">
-            <Link href="/quote">Pedir Cotação</Link>
+            <Link href="/orcamento">Solicitar Orçamento</Link>
           </Button>
           <div className="md:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -59,13 +59,14 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="left">
                 <SheetHeader>
-                   <SheetTitle className="sr-only">Menu de Navegação</SheetTitle>
+                   <SheetTitle>
                     <Logo />
+                  </SheetTitle>
                 </SheetHeader>
                 <NavLinks className="mt-6 flex flex-col space-y-4 px-0" onLinkClick={() => setIsSheetOpen(false)} />
                  <div className="mt-6">
                     <Button asChild className="w-full">
-                        <Link href="/quote" onClick={() => setIsSheetOpen(false)}>Pedir Cotação</Link>
+                        <Link href="/orcamento" onClick={() => setIsSheetOpen(false)}>Solicitar Orçamento</Link>
                     </Button>
                  </div>
               </SheetContent>

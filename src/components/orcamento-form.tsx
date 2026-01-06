@@ -3,8 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
-import { QuoteSchema, type Quote } from "@/lib/types";
-import { submitQuote } from "@/app/actions";
+import { OrcamentoSchema, type Orcamento } from "@/lib/types";
+import { submitOrcamento } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,12 +19,12 @@ import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 import { Loader2 } from "lucide-react";
 
-export function QuoteForm() {
+export function OrcamentoForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const form = useForm<Quote>({
-    resolver: zodResolver(QuoteSchema),
+  const form = useForm<Orcamento>({
+    resolver: zodResolver(OrcamentoSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -34,12 +34,12 @@ export function QuoteForm() {
     },
   });
 
-  async function onSubmit(data: Quote) {
+  async function onSubmit(data: Orcamento) {
     setIsSubmitting(true);
     try {
-      await submitQuote(data);
+      await submitOrcamento(data);
       toast({
-        title: "Pedido de Cotação Enviado!",
+        title: "Pedido de Orçamento Enviado!",
         description: "Obrigado! Recebemos seu pedido e entraremos em contato em breve.",
       });
       form.reset();

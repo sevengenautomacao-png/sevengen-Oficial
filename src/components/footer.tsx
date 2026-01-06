@@ -40,8 +40,8 @@ export function Footer() {
                 <Link href="/#services" className="text-muted-foreground transition-colors hover:text-foreground">
                   Serviços
                 </Link>
-                <Link href="/quote" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Pedir Cotação
+                <Link href="/orcamento" className="text-muted-foreground transition-colors hover:text-foreground">
+                  Pedir Orçamento
                 </Link>
               </nav>
             </div>

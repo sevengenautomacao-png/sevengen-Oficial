@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const QuoteSchema = z.object({
+export const OrcamentoSchema = z.object({
   name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
   email: z.string().email({ message: "Por favor, insira um endereço de e-mail válido." }),
   company: z.string().optional(),
@@ -8,4 +8,4 @@ export const QuoteSchema = z.object({
   projectDetails: z.string().min(10, { message: "Por favor, forneça alguns detalhes sobre o seu projeto." }),
 });
 
-export type Quote = z.infer<typeof QuoteSchema>;
+export type Orcamento = z.infer<typeof OrcamentoSchema>;

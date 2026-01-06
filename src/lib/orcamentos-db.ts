@@ -1,17 +1,17 @@
 // This is a mock database for demonstration purposes.
 // In a real application, you would use a proper database like Firestore.
-import type { Quote } from './types';
+import type { Orcamento } from './types';
 
-export interface QuoteWithMetadata extends Quote {
+export interface OrcamentoWithMetadata extends Orcamento {
   id: string;
   submittedAt: Date;
   status: 'new' | 'contacted' | 'closed';
 }
 
 // In-memory store with some initial data
-let quotes: QuoteWithMetadata[] = [
+let orcamentos: OrcamentoWithMetadata[] = [
     {
-        id: 'q_1',
+        id: 'o_1',
         name: 'Alice Johnson',
         email: 'alice.j@examplecorp.com',
         company: 'Example Corp',
@@ -21,7 +21,7 @@ let quotes: QuoteWithMetadata[] = [
         status: 'new',
     },
     {
-        id: 'q_2',
+        id: 'o_2',
         name: 'Bob Smith',
         email: 'bob.smith@innovatech.io',
         company: 'InnovaTech',
@@ -31,7 +31,7 @@ let quotes: QuoteWithMetadata[] = [
         status: 'contacted',
     },
     {
-        id: 'q_3',
+        id: 'o_3',
         name: 'Carlos Silva',
         email: 'carlos@fabricaglobal.com',
         company: 'Fábrica Global',
@@ -42,25 +42,25 @@ let quotes: QuoteWithMetadata[] = [
     },
 ];
 
-let counter = quotes.length;
+let counter = orcamentos.length;
 
-export async function addQuote(quote: Quote): Promise<QuoteWithMetadata> {
+export async function addOrcamento(orcamento: Orcamento): Promise<OrcamentoWithMetadata> {
   counter++;
-  const newQuote: QuoteWithMetadata = {
-    ...quote,
-    id: `q_${counter}`,
+  const newOrcamento: OrcamentoWithMetadata = {
+    ...orcamento,
+    id: `o_${counter}`,
     submittedAt: new Date(),
     status: 'new',
   };
-  quotes.unshift(newQuote); // Add to the beginning of the array
-  return newQuote;
+  orcamentos.unshift(newOrcamento); // Add to the beginning of the array
+  return newOrcamento;
 }
 
-export async function getQuotes(): Promise<QuoteWithMetadata[]> {
+export async function getOrcamentos(): Promise<OrcamentoWithMetadata[]> {
   // sort by date descending
-  return [...quotes].sort((a, b) => b.submittedAt.getTime() - a.submittedAt.getTime());
+  return [...orcamentos].sort((a, b) => b.submittedAt.getTime() - a.submittedAt.getTime());
 }
 
-export async function getQuoteById(id: string): Promise<QuoteWithMetadata | undefined> {
-    return quotes.find(q => q.id === id);
+export async function getOrcamentoById(id: string): Promise<OrcamentoWithMetadata | undefined> {
+    return orcamentos.find(o => o.id === id);
 }

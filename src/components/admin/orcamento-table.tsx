@@ -15,16 +15,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
-import type { QuoteWithMetadata } from "@/lib/quotes-db";
+import type { OrcamentoWithMetadata } from "@/lib/orcamentos-db";
 import { format } from "date-fns";
 import { ptBR } from 'date-fns/locale';
 
 
-type QuoteTableProps = {
-  quotes: QuoteWithMetadata[];
+type OrcamentoTableProps = {
+  orcamentos: OrcamentoWithMetadata[];
 };
 
-export function QuoteTable({ quotes }: QuoteTableProps) {
+export function OrcamentoTable({ orcamentos }: OrcamentoTableProps) {
   return (
     <div className="rounded-lg border">
       <Table>
@@ -38,41 +38,41 @@ export function QuoteTable({ quotes }: QuoteTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {quotes.length === 0 && (
+          {orcamentos.length === 0 && (
              <TableRow>
                 <TableCell colSpan={5} className="h-24 text-center">
-                    Nenhum pedido de cotação ainda.
+                    Nenhum pedido de orçamento ainda.
                 </TableCell>
              </TableRow>
           )}
-          {quotes.map((quote) => (
-            <TableRow key={quote.id}>
+          {orcamentos.map((orcamento) => (
+            <TableRow key={orcamento.id}>
               <TableCell>
-                <div className="font-medium">{quote.name}</div>
-                <div className="text-sm text-muted-foreground hidden sm:block">{quote.email}</div>
+                <div className="font-medium">{orcamento.name}</div>
+                <div className="text-sm text-muted-foreground hidden sm:block">{orcamento.email}</div>
               </TableCell>
-              <TableCell className="hidden md:table-cell">{quote.company || "N/A"}</TableCell>
+              <TableCell className="hidden md:table-cell">{orcamento.company || "N/A"}</TableCell>
               <TableCell>
                 <Badge 
                     variant={
-                        quote.status === 'new' ? 'default' :
-                        quote.status === 'contacted' ? 'secondary' :
+                        orcamento.status === 'new' ? 'default' :
+                        orcamento.status === 'contacted' ? 'secondary' :
                         'outline'
                     }
                     className="capitalize"
                 >
-                  {quote.status === 'new' ? 'novo' : quote.status === 'contacted' ? 'contactado' : 'fechado'}
+                  {orcamento.status === 'new' ? 'novo' : orcamento.status === 'contacted' ? 'contactado' : 'fechado'}
                 </Badge>
               </TableCell>
               <TableCell className="hidden lg:table-cell">
-                {format(quote.submittedAt, "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR })}
+                {format(orcamento.submittedAt, "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR })}
               </TableCell>
               <TableCell className="text-right">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon">
                       <MoreHorizontal className="h-4 w-4" />
-                      <span className="sr-only">Ações para {quote.name}</span>
+                      <span className="sr-only">Ações para {orcamento.name}</span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">

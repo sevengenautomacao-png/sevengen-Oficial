@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Cpu, PlugZap, GanttChartSquare, ArrowRight, Wrench, Lightbulb, ShoppingCart, Truck } from 'lucide-react';
+import { ArrowRight, Cpu, GanttChartSquare, Wrench, PlugZap, ShoppingCart, Truck, Lightbulb, TestTube, Factory } from 'lucide-react';
 
 const heroImage = PlaceHolderImages.find(p => p.id === 'hero');
 
@@ -14,45 +14,59 @@ const serviceImages = {
   retail: PlaceHolderImages.find(p => p.id === 'service-retail'),
   rent: PlaceHolderImages.find(p => p.id === 'service-rent'),
   repair: PlaceHolderImages.find(p => p.id === 'service-repair'),
+  general: PlaceHolderImages.find(p => p.id === 'service-general-maintenance'),
+  measurement: PlaceHolderImages.find(p => p.id === 'service-measurement-repair'),
 };
 const aboutImage = PlaceHolderImages.find(p => p.id === 'about-team');
 
 const services = [
   {
     icon: <PlugZap className="h-10 w-10 text-primary" />,
-    title: 'Equipamentos de Energia',
-    description: 'Fabricação de aparelhos para distribuição e controle de energia elétrica, incluindo subestações, quadros de comando e disjuntores.',
+    title: 'Distribuição e Controle de Energia',
+    description: 'Fabricação de subestações, quadros de comando, disjuntores, e outros equipamentos para distribuição e controle de energia elétrica.',
     image: serviceImages.distribution,
   },
   {
     icon: <GanttChartSquare className="h-10 w-10 text-primary" />,
     title: 'Serviços de Engenharia',
-    description: 'Elaboração e gestão de projetos técnicos em engenharia elétrica, eletrônica, mecânica, de sistemas e de segurança.',
+    description: 'Elaboração e gestão de projetos técnicos, supervisão de obras e consultoria em diversas áreas da engenharia.',
     image: serviceImages.engineering,
   },
   {
     icon: <Wrench className="h-10 w-10 text-primary" />,
-    title: 'Instalação e Manutenção',
-    description: 'Instalação, alteração e reparo de sistemas de eletricidade, redes de informática, automação predial e sistemas de alarme.',
+    title: 'Instalação e Manutenção Elétrica',
+    description: 'Instalação e manutenção de sistemas de eletricidade, redes de comunicação, automação predial e sistemas de segurança.',
     image: serviceImages.installation,
   },
   {
     icon: <ShoppingCart className="h-10 w-10 text-primary" />,
     title: 'Comércio de Material Elétrico',
-    description: 'Comércio varejista especializado de fios, cabos, condutores, chaves elétricas, lâmpadas, interruptores e tomadas.',
+    description: 'Comércio varejista de fios, cabos, lâmpadas, interruptores, tomadas e outros materiais elétricos.',
     image: serviceImages.retail,
   },
   {
     icon: <Truck className="h-10 w-10 text-primary" />,
-    title: 'Aluguel de Equipamentos',
-    description: 'Aluguel e leasing operacional de máquinas e equipamentos comerciais e industriais, como motores, geradores e guindastes.',
+    title: 'Aluguel de Máquinas e Equipamentos',
+    description: 'Aluguel de motores, geradores, guindastes, equipamentos de som e vídeo profissional, e contêineres.',
     image: serviceImages.rent,
   },
   {
     icon: <Lightbulb className="h-10 w-10 text-primary" />,
     title: 'Reparo de Eletroeletrônicos',
-    description: 'Reparo e manutenção de equipamentos eletroeletrônicos de uso pessoal, doméstico e industrial.',
+    description: 'Reparação e manutenção de eletrodomésticos, televisores, rádios, e equipamentos de ar condicionado de uso doméstico ou industrial.',
     image: serviceImages.repair,
+  },
+   {
+    icon: <Factory className="h-10 w-10 text-primary" />,
+    title: 'Manutenção de Equipamentos de Uso Geral',
+    description: 'Manutenção e reparação de máquinas de embalar, equipamentos de saneamento, extintores de incêndio e outras máquinas de uso geral.',
+    image: serviceImages.general,
+  },
+  {
+    icon: <TestTube className="h-10 w-10 text-primary" />,
+    title: 'Manutenção de Instrumentos de Medida',
+    description: 'Manutenção e reparação de aparelhos e instrumentos de medida, teste e controle utilizados na indústria.',
+    image: serviceImages.measurement,
   },
 ];
 
@@ -89,8 +103,8 @@ function HeroSection() {
           A Sevengen oferece soluções de automação elétrica e eletrônica de ponta, adaptadas às necessidades da sua indústria.
         </p>
         <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-          <Link href="/quote">
-            Obtenha sua Cotação Gratuita <ArrowRight className="ml-2 h-5 w-5" />
+          <Link href="/orcamento">
+            Obtenha seu Orçamento Gratuito <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>
       </div>
@@ -108,7 +122,7 @@ function ServicesSection() {
             Oferecemos uma gama completa de serviços para aumentar sua eficiência operacional e produtividade.
           </p>
         </div>
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => (
             <Card key={service.title} className="flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
               {service.image && (
@@ -123,9 +137,9 @@ function ServicesSection() {
                   />
                 </div>
               )}
-              <CardHeader className="flex-row items-center gap-4">
+              <CardHeader className="flex-row items-start gap-4">
                 {service.icon}
-                <CardTitle className="text-xl font-headline">{service.title}</CardTitle>
+                <CardTitle className="text-xl font-headline mt-2">{service.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
                 <CardDescription>{service.description}</CardDescription>
@@ -171,11 +185,11 @@ function CtaSection() {
       <div className="container text-center">
         <h2 className="text-3xl md:text-4xl font-bold font-headline">Pronto para Automatizar?</h2>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Vamos discutir como a Sevengen pode ajudá-lo a alcançar seus objetivos de automação. Entre em contato hoje para uma consulta e cotação personalizadas.
+          Vamos discutir como a Sevengen pode ajudá-lo a alcançar seus objetivos de automação. Entre em contato hoje para uma consulta e orçamento personalizados.
         </p>
         <Button asChild size="lg" className="mt-8">
-          <Link href="/quote">
-            Solicite uma Cotação Agora <ArrowRight className="ml-2 h-5 w-5" />
+          <Link href="/orcamento">
+            Solicite um Orçamento Agora <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>
       </div>

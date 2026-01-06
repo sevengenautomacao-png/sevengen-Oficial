@@ -30,10 +30,10 @@ export function AdminSidebar() {
         <SidebarContent className="p-2 flex-1">
             <SidebarMenu>
             <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === '/admin'} tooltip="Pedidos de Cotação">
+                <SidebarMenuButton asChild isActive={pathname === '/admin'} tooltip="Pedidos de Orçamento">
                     <Link href="/admin">
                         <LayoutDashboard />
-                        <span>Pedidos de Cotação</span>
+                        <span>Pedidos de Orçamento</span>
                     </Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>

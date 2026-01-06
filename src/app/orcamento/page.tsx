@@ -1,13 +1,13 @@
-import { QuoteForm } from "@/components/quote-form";
+import { OrcamentoForm } from "@/components/orcamento-form";
 import { Metadata } from "next";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Solicitar uma Cotação",
-  description: "Preencha o formulário para obter uma cotação personalizada para o seu projeto de automação.",
+  title: "Solicitar um Orçamento",
+  description: "Preencha o formulário para obter um orçamento personalizado para o seu projeto de automação.",
 };
 
-export default function QuotePage() {
+export default function OrcamentoPage() {
   return (
     <div className="container max-w-3xl py-16 md:py-24">
       <div className="text-center mb-12">
@@ -18,7 +18,7 @@ export default function QuotePage() {
       </div>
       <Card>
         <CardContent className="p-6 sm:p-8">
-            <QuoteForm />
+            <OrcamentoForm />
         </CardContent>
       </Card>
     </div>

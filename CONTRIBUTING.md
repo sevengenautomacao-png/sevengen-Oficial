@@ -31,7 +31,7 @@ git add .
 "Commitar" os arquivos salva o estado atual deles no histórico do Git.
 
 ```bash
-git commit -m "Commit inicial"
+
 ```
 
 ### 5. Conecte seu repositório local ao GitHub
