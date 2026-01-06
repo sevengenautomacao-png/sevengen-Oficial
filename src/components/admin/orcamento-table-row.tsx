@@ -9,9 +9,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Check } from "lucide-react";
 import type { OrcamentoWithMetadata } from "@/lib/orcamentos-db";
 import { format } from "date-fns";
 import { ptBR } from 'date-fns/locale';
@@ -20,7 +24,7 @@ import { OrcamentoDetailsDialog } from "./orcamento-details-dialog";
 type OrcamentoTableRowProps = {
   orcamento: OrcamentoWithMetadata;
   isClient: boolean;
-  onUpdateStatus: (id: string, status: "contacted" | "closed") => void;
+  onUpdateStatus: (id: string, status: "new" | "contacted" | "closed") => void;
   onDelete: (id: string) => void;
 };
 
@@ -31,6 +35,14 @@ export function OrcamentoTableRow({
   onDelete,
 }: OrcamentoTableRowProps) {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
+  const statusOptions: Array<"new" | "contacted" | "closed"> = ["new", "contacted", "closed"];
+  const statusLabels = {
+    new: "Novo",
+    contacted: "Contactado",
+    closed: "Fechado"
+  };
+
 
   return (
     <>
@@ -67,16 +79,25 @@ export function OrcamentoTableRow({
               <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>
                 Ver Detalhes
               </DropdownMenuItem>
-              {orcamento.status === 'new' && (
-                <DropdownMenuItem onClick={() => onUpdateStatus(orcamento.id, "contacted")}>
-                  Marcar como Contactado
-                </DropdownMenuItem>
-              )}
-              {orcamento.status === 'contacted' && (
-                <DropdownMenuItem onClick={() => onUpdateStatus(orcamento.id, "closed")}>
-                  Marcar como Fechado
-                </DropdownMenuItem>
-              )}
+              
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Alterar Status</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    {statusOptions.map(status => (
+                        <DropdownMenuItem 
+                            key={status} 
+                            onClick={() => onUpdateStatus(orcamento.id, status)}
+                            className="flex justify-between items-center"
+                        >
+                            <span>{statusLabels[status]}</span>
+                            {orcamento.status === status && <Check className="h-4 w-4" />}
+                        </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="text-destructive focus:bg-destructive/10 focus:text-destructive"
