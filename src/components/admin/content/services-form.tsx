@@ -19,9 +19,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2 } from 'lucide-react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Loader2, Sparkles } from 'lucide-react';
+import { CardFooter } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const ServiceSchema = z.object({
   icon: z.string(),
@@ -29,6 +30,7 @@ const ServiceSchema = z.object({
   description: z.string().min(10, 'A descrição deve ter pelo menos 10 caracteres.'),
   imageId: z.string(),
   imageUrl: z.string().url('Por favor, insira uma URL de imagem válida.').optional().or(z.literal('')),
+  comingSoon: z.boolean(),
 });
 
 const ServicesFormSchema = z.object({
@@ -48,7 +50,7 @@ export function ServicesForm({ services }: ServicesFormProps) {
   const form = useForm<ServicesFormValues>({
     resolver: zodResolver(ServicesFormSchema),
     defaultValues: {
-      services: services.map(s => ({ ...s, imageUrl: s.imageUrl || '' })),
+      services: services.map(s => ({ ...s, imageUrl: s.imageUrl || '', comingSoon: s.comingSoon || false })),
     },
   });
 
@@ -85,7 +87,12 @@ export function ServicesForm({ services }: ServicesFormProps) {
           {fields.map((field, index) => (
             <AccordionItem value={`item-${index}`} key={field.id}>
               <AccordionTrigger>
-                <span className="font-semibold text-left">{form.watch(`services.${index}.title`)}</span>
+                <div className="flex items-center justify-between w-full pr-2">
+                    <span className="font-semibold text-left">{form.watch(`services.${index}.title`)}</span>
+                    {form.watch(`services.${index}.comingSoon`) && (
+                        <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">Em Breve</span>
+                    )}
+                </div>
               </AccordionTrigger>
               <AccordionContent>
                 <div className="space-y-4 p-1">
@@ -138,6 +145,25 @@ export function ServicesForm({ services }: ServicesFormProps) {
                           <Input placeholder="Nome do Ícone (ex: PlugZap)" {...field} />
                         </FormControl>
                         <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name={`services.${index}.comingSoon`}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel>
+                            Marcar como "Em Breve"
+                          </FormLabel>
+                        </div>
                       </FormItem>
                     )}
                   />

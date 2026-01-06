@@ -7,6 +7,7 @@ export type Service = {
     description: string;
     imageId: string;
     imageUrl?: string; 
+    comingSoon: boolean;
 }
 
 export type PageContent = {

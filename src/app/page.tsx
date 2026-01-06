@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ArrowRight, Cpu, GanttChartSquare, Wrench, PlugZap, ShoppingCart, Truck, Lightbulb, TestTube, Factory } from 'lucide-react';
 import { getPageContent } from '@/lib/page-content-db';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { cn } from '@/lib/utils';
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
   PlugZap: <PlugZap className="h-10 w-10 text-primary" />,
@@ -81,19 +82,24 @@ async function ServicesSection() {
             const imageUrl = service.imageUrl || serviceImage?.imageUrl;
 
             return (
-                <Card key={service.title} className="flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
-                {imageUrl && (
-                    <div className="aspect-[16/10] relative">
-                    <Image
-                        src={imageUrl}
-                        alt={serviceImage?.description || service.title}
-                        data-ai-hint={serviceImage?.imageHint || ''}
-                        width={600}
-                        height={400}
-                        className="object-cover w-full h-full"
-                    />
-                    </div>
-                )}
+                <Card key={service.title} className={cn("flex flex-col overflow-hidden transition-transform duration-300", !service.comingSoon && "hover:-translate-y-2 hover:shadow-xl")}>
+                <div className="aspect-[16/10] relative">
+                    {imageUrl && (
+                        <Image
+                            src={imageUrl}
+                            alt={serviceImage?.description || service.title}
+                            data-ai-hint={serviceImage?.imageHint || ''}
+                            width={600}
+                            height={400}
+                            className={cn("object-cover w-full h-full", service.comingSoon && "blur-sm")}
+                        />
+                    )}
+                    {service.comingSoon && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                            <span className="text-white text-lg font-bold bg-black/60 px-4 py-2 rounded-md">Em Breve</span>
+                        </div>
+                    )}
+                </div>
                 <CardHeader className="flex-row items-start gap-4">
                     {serviceIcons[service.icon] || <Cpu className="h-10 w-10 text-primary" />}
                     <CardTitle className="text-xl font-headline mt-2">{service.title}</CardTitle>

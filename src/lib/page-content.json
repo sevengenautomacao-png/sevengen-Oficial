@@ -15,49 +15,57 @@
             "icon": "PlugZap",
             "title": "Distribuição e Controle de Energia",
             "description": "Fabricação de subestações, quadros de comando, disjuntores, e outros equipamentos para distribuição e controle de energia elétrica.",
-            "imageId": "service-distribution-control"
+            "imageId": "service-distribution-control",
+            "comingSoon": false
         },
         {
             "icon": "GanttChartSquare",
             "title": "Serviços de Engenharia",
             "description": "Elaboração e gestão de projetos técnicos, supervisão de obras e consultoria em diversas áreas da engenharia.",
-            "imageId": "service-engineering"
+            "imageId": "service-engineering",
+            "comingSoon": false
         },
         {
             "icon": "Wrench",
             "title": "Instalação e Manutenção Elétrica",
             "description": "Instalação e manutenção de sistemas de eletricidade, redes de comunicação, automação predial e sistemas de segurança.",
-            "imageId": "service-installation-maintenance"
+            "imageId": "service-installation-maintenance",
+            "comingSoon": false
         },
         {
             "icon": "ShoppingCart",
             "title": "Comércio de Material Elétrico",
             "description": "Comércio varejista de fios, cabos, lâmpadas, interruptores, tomadas e outros materiais elétricos.",
-            "imageId": "service-retail"
+            "imageId": "service-retail",
+            "comingSoon": false
         },
         {
             "icon": "Truck",
             "title": "Aluguel de Máquinas e Equipamentos",
             "description": "Aluguel de motores, geradores, guindastes, equipamentos de som e vídeo profissional, e contêineres.",
-            "imageId": "service-rent"
+            "imageId": "service-rent",
+            "comingSoon": false
         },
         {
             "icon": "Lightbulb",
             "title": "Reparo de Eletroeletrônicos",
             "description": "Reparação e manutenção de eletrodomésticos, televisores, rádios, e equipamentos de ar condicionado de uso doméstico ou industrial.",
-            "imageId": "service-repair"
+            "imageId": "service-repair",
+            "comingSoon": false
         },
         {
             "icon": "Factory",
             "title": "Manutenção de Equipamentos de Uso Geral",
             "description": "Manutenção e reparação de máquinas de embalar, equipamentos de saneamento, extintores de incêndio e outras máquinas de uso geral.",
-            "imageId": "service-general-maintenance"
+            "imageId": "service-general-maintenance",
+            "comingSoon": false
         },
         {
             "icon": "TestTube",
             "title": "Manutenção de Instrumentos de Medida",
             "description": "Manutenção e reparação de aparelhos e instrumentos de medida, teste e controle utilizados na indústria.",
-            "imageId": "service-measurement-repair"
+            "imageId": "service-measurement-repair",
+            "comingSoon": true
         }
     ],
     "aboutSection": {
