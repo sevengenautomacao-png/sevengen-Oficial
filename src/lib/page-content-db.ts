@@ -38,3 +38,7 @@ export async function updateHeroContent(heroData: PageContent['hero']) {
 export async function updateServicesContent(servicesData: Service[]) {
     await contentDocRef.update({ services: servicesData });
 }
+
+export async function updateAboutContent(aboutData: PageContent['aboutSection']) {
+    await contentDocRef.update({ aboutSection: aboutData });
+}

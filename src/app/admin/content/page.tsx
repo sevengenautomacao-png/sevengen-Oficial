@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { getPageContent } from "@/lib/page-content-db";
 import { HeroForm } from "@/components/admin/content/hero-form";
 import { ServicesForm } from "@/components/admin/content/services-form";
+import { AboutForm } from "@/components/admin/content/about-form";
 
 export const metadata: Metadata = {
     title: "Gerenciar Conteúdo da Página Inicial",
@@ -57,10 +58,10 @@ export default async function ContentManagementPage() {
                     <Card>
                         <CardHeader>
                             <CardTitle>Seção Sobre</CardTitle>
-                            <CardDescription>Edite o texto e a imagem da seção que fala sobre a sua empresa.</CardDescription>
+                            <CardDescription>Edite o título, os parágrafos e a imagem da seção que fala sobre a sua empresa.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                             <p className="text-sm text-muted-foreground">(Funcionalidade de edição em breve)</p>
+                             <AboutForm aboutContent={pageContent.aboutSection} />
                         </CardContent>
                     </Card>
                 </TabsContent>
