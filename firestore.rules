@@ -2,11 +2,11 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Permite que qualquer pessoa crie (envie) um orçamento,
-    // mas restringe a leitura, atualização e exclusão a usuários autenticados.
+    // Permite que qualquer pessoa crie (envie) um orçamento.
+    // A leitura e a exclusão são restritas para proteger os dados.
     match /orcamentos/{budgetId} {
-      allow read, update, delete: if request.auth != null;
       allow create: if true;
+      allow read, update, delete: if request.auth != null;
     }
   }
 }
