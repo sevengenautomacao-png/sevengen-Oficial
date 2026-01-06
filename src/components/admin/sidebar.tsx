@@ -1,0 +1,55 @@
+"use client"
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Cpu, LayoutDashboard, Home } from 'lucide-react';
+import {
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarFooter,
+  SidebarContent,
+} from '@/components/ui/sidebar';
+import { Separator } from '@/components/ui/separator';
+
+export function AdminSidebar() {
+  const pathname = usePathname();
+
+  return (
+    <div className="flex flex-col h-full">
+      <SidebarHeader>
+        <Link href="/" className="flex items-center gap-2" target="_blank" rel="noopener noreferrer">
+            <Cpu className="h-8 w-8 text-primary" />
+            <span className="text-lg font-bold tracking-tight text-foreground">
+            Sevengen
+            </span>
+        </Link>
+      </SidebarHeader>
+      <SidebarContent className="p-2 flex-1">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild isActive={pathname === '/admin'} tooltip="Quote Requests">
+                <Link href="/admin">
+                    <LayoutDashboard />
+                    <span>Quote Requests</span>
+                </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarContent>
+      <SidebarFooter className="p-2">
+        <Separator className="my-2" />
+        <SidebarMenu>
+          <SidebarMenuItem>
+             <SidebarMenuButton asChild tooltip="Back to Site">
+                <Link href="/">
+                    <Home />
+                    <span>Back to Site</span>
+                </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+    </div>
+  );
+}

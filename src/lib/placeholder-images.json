@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A modern factory with robotic arms and automation.",
+      "imageUrl": "https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYWN0b3J5JTIwYXV0b21hdGlvbnxlbnwwfHx8fDE3Njc3MTYyMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "factory automation"
+    },
+    {
+      "id": "service-electrical",
+      "description": "Close up of an electrical panel with many wires.",
+      "imageUrl": "https://images.unsplash.com/photo-1607631697491-61972eecf928?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2FsJTIwcGFuZWx8ZW58MHx8fHwxNzY3NjM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electrical panel"
+    },
+    {
+      "id": "service-electronic",
+      "description": "A complex printed circuit board with microchips.",
+      "imageUrl": "https://images.unsplash.com/photo-1697952431907-8542919a16b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaXJjdWl0JTIwYm9hcmR8ZW58MHx8fHwxNzY3NzAxNzI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "circuit board"
+    },
+    {
+      "id": "service-custom",
+      "description": "Engineers collaborating over a technical blueprint.",
+      "imageUrl": "https://images.unsplash.com/photo-1763198302302-b4b42cf73013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlbmdpbmVlcnMlMjBibHVlcHJpbnR8ZW58MHx8fHwxNzY3NzE2MjIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "engineers blueprint"
+    },
+    {
+      "id": "about-team",
+      "description": "A diverse team of engineers collaborating in a modern office.",
+      "imageUrl": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0ZWFtJTIwb2ZmaWNlfGVufDB8fHx8MTc2NzY1NDg2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "team office"
+    }
+  ]
 }
