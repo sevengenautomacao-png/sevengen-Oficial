@@ -1,0 +1,76 @@
+
+{
+    "hero": {
+        "title": "Projetando o Futuro da Automação",
+        "subtitle": "A Sevengen oferece soluções de automação elétrica e eletrônica de ponta, adaptadas às necessidades da sua indústria.",
+        "ctaButton": "Obtenha seu Orçamento Gratuito",
+        "imageId": "hero"
+    },
+    "servicesSection": {
+        "title": "Nossa Expertise",
+        "subtitle": "Oferecemos uma gama completa de serviços para aumentar sua eficiência operacional e produtividade."
+    },
+    "services": [
+        {
+            "icon": "PlugZap",
+            "title": "Distribuição e Controle de Energia",
+            "description": "Fabricação de subestações, quadros de comando, disjuntores, e outros equipamentos para distribuição e controle de energia elétrica.",
+            "imageId": "service-distribution-control"
+        },
+        {
+            "icon": "GanttChartSquare",
+            "title": "Serviços de Engenharia",
+            "description": "Elaboração e gestão de projetos técnicos, supervisão de obras e consultoria em diversas áreas da engenharia.",
+            "imageId": "service-engineering"
+        },
+        {
+            "icon": "Wrench",
+            "title": "Instalação e Manutenção Elétrica",
+            "description": "Instalação e manutenção de sistemas de eletricidade, redes de comunicação, automação predial e sistemas de segurança.",
+            "imageId": "service-installation-maintenance"
+        },
+        {
+            "icon": "ShoppingCart",
+            "title": "Comércio de Material Elétrico",
+            "description": "Comércio varejista de fios, cabos, lâmpadas, interruptores, tomadas e outros materiais elétricos.",
+            "imageId": "service-retail"
+        },
+        {
+            "icon": "Truck",
+            "title": "Aluguel de Máquinas e Equipamentos",
+            "description": "Aluguel de motores, geradores, guindastes, equipamentos de som e vídeo profissional, e contêineres.",
+            "imageId": "service-rent"
+        },
+        {
+            "icon": "Lightbulb",
+            "title": "Reparo de Eletroeletrônicos",
+            "description": "Reparação e manutenção de eletrodomésticos, televisores, rádios, e equipamentos de ar condicionado de uso doméstico ou industrial.",
+            "imageId": "service-repair"
+        },
+        {
+            "icon": "Factory",
+            "title": "Manutenção de Equipamentos de Uso Geral",
+            "description": "Manutenção e reparação de máquinas de embalar, equipamentos de saneamento, extintores de incêndio e outras máquinas de uso geral.",
+            "imageId": "service-general-maintenance"
+        },
+        {
+            "icon": "TestTube",
+            "title": "Manutenção de Instrumentos de Medida",
+            "description": "Manutenção e reparação de aparelhos e instrumentos de medida, teste e controle utilizados na indústria.",
+            "imageId": "service-measurement-repair"
+        }
+    ],
+    "aboutSection": {
+        "title": "Sobre a Sevengen Automação",
+        "paragraphs": [
+            "Desde a nossa fundação, a Sevengen está na vanguarda da indústria de automação. Nossa missão é capacitar empresas com sistemas de automação inteligentes, confiáveis e eficientes que impulsionam o crescimento e a inovação.",
+            "Nossa equipe de engenheiros especialistas traz décadas de experiência combinada em disciplinas elétricas e eletrônicas, garantindo uma abordagem holística para cada projeto que realizamos. Estamos comprometidos com a qualidade, segurança e satisfação do cliente."
+        ],
+        "imageId": "about-team"
+    },
+    "ctaSection": {
+        "title": "Pronto para Automatizar?",
+        "subtitle": "Vamos discutir como a Sevengen pode ajudá-lo a alcançar seus objetivos de automação. Entre em contato hoje para uma consulta e orçamento personalizados.",
+        "ctaButton": "Solicite um Orçamento Agora"
+    }
+}

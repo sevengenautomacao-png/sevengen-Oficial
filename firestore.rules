@@ -1,3 +1,4 @@
+
 rules_version = '2';
 
 service cloud.firestore {
@@ -12,6 +13,13 @@ service cloud.firestore {
     // Permite que usuários autenticados gerenciem colaboradores.
     match /colaboradores/{colaboradorId} {
       allow read, write: if request.auth != null;
+    }
+
+    // Permite que todos leiam o conteúdo do site, mas apenas usuários
+    // autenticados (admins) podem escrever.
+    match /pageContent/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
     }
   }
 }
