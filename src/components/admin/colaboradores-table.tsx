@@ -103,8 +103,8 @@ export function ColaboradoresTable({ colaboradores: initialColaboradores }: Cola
             <TableRow>
               <TableHead>Nome</TableHead>
               <TableHead className="hidden md:table-cell">Email</TableHead>
-              <TableHead>Idade</TableHead>
               <TableHead>Cargo</TableHead>
+              <TableHead className="hidden lg:table-cell">Senha</TableHead>
               <TableHead><span className="sr-only">Ações</span></TableHead>
             </TableRow>
           </TableHeader>
@@ -120,8 +120,8 @@ export function ColaboradoresTable({ colaboradores: initialColaboradores }: Cola
                 <TableRow key={colaborador.id}>
                   <TableCell className="font-medium">{colaborador.name}</TableCell>
                   <TableCell className="hidden md:table-cell text-muted-foreground">{colaborador.email}</TableCell>
-                  <TableCell>{colaborador.age}</TableCell>
                   <TableCell>{colaborador.role}</TableCell>
+                  <TableCell className="hidden lg:table-cell text-muted-foreground font-mono text-xs">{colaborador.password}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>

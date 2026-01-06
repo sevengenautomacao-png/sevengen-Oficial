@@ -38,6 +38,7 @@ type ColaboradorFormDialogProps = {
 };
 
 // We don't want to validate the password on the client, as it's generated on the server
+// or handled separately.
 const FormSchema = ColaboradorSchema.omit({ password: true });
 
 export function ColaboradorFormDialog({
@@ -64,16 +65,18 @@ export function ColaboradorFormDialog({
 
   React.useEffect(() => {
     // Reset form and password state when dialog opens or collaborator changes
-    setGeneratedPassword(null);
-    if (colaborador) {
-      form.reset(colaborador);
-    } else {
-      form.reset({
-        name: "",
-        age: 0,
-        email: "",
-        role: "",
-      });
+    if (isOpen) {
+      setGeneratedPassword(null);
+      if (colaborador) {
+        form.reset(colaborador);
+      } else {
+        form.reset({
+          name: "",
+          age: 0,
+          email: "",
+          role: "",
+        });
+      }
     }
   }, [colaborador, form, isOpen]);
   
@@ -131,10 +134,10 @@ export function ColaboradorFormDialog({
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{isEditing ? "Editar Colaborador" : generatedPassword ? "Colaborador Criado com Sucesso" : "Adicionar Novo Colaborador"}</DialogTitle>
+          <DialogTitle>{isEditing ? "Editar Colaborador" : generatedPassword ? "Colaborador Criado" : "Adicionar Novo Colaborador"}</DialogTitle>
           <DialogDescription>
              {generatedPassword
-              ? "O colaborador foi adicionado. Copie a senha abaixo antes de fechar."
+              ? "O colaborador foi adicionado. Copie a senha gerada abaixo."
               : isEditing
               ? "Altere os dados abaixo para atualizar o colaborador."
               : "Preencha os dados abaixo para adicionar um novo membro à equipe."}
@@ -214,6 +217,14 @@ export function ColaboradorFormDialog({
                   )}
                   />
               </div>
+
+               {isEditing && colaborador?.password && (
+                <div className="space-y-2">
+                    <Label htmlFor="current-password">Senha</Label>
+                    <Input id="current-password" type="text" readOnly disabled value={colaborador.password} />
+                </div>
+               )}
+
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={handleClose} disabled={isSubmitting}>
                   Cancelar
