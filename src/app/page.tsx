@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Cpu, GanttChartSquare, Wrench, PlugZap, ShoppingCart, Truck, Lightbulb, TestTube, Factory } from 'lucide-react';
-import { pageContent } from '@/lib/page-content';
+import { getPageContent } from '@/lib/page-content-db';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
@@ -18,7 +18,8 @@ const serviceIcons: { [key: string]: React.ReactNode } = {
   TestTube: <TestTube className="h-10 w-10 text-primary" />,
 };
 
-export default function Home() {
+export default async function Home() {
+  const pageContent = await getPageContent();
   return (
     <>
       <HeroSection />
@@ -29,8 +30,8 @@ export default function Home() {
   );
 }
 
-function HeroSection() {
-    const { hero } = pageContent;
+async function HeroSection() {
+    const { hero } = await getPageContent();
     const heroImage = PlaceHolderImages.find(p => p.id === hero.imageId);
 
   return (
@@ -63,8 +64,8 @@ function HeroSection() {
   );
 }
 
-function ServicesSection() {
-    const { servicesSection, services } = pageContent;
+async function ServicesSection() {
+    const { servicesSection, services } = await getPageContent();
   return (
     <section id="services" className="py-16 md:py-24 bg-secondary">
       <div className="container">
@@ -107,8 +108,8 @@ function ServicesSection() {
   );
 }
 
-function AboutSection() {
-    const { aboutSection } = pageContent;
+async function AboutSection() {
+    const { aboutSection } = await getPageContent();
     const aboutImage = PlaceHolderImages.find(p => p.id === aboutSection.imageId);
   return (
     <section id="about" className="py-16 md:py-24 bg-background">
@@ -135,8 +136,8 @@ function AboutSection() {
   );
 }
 
-function CtaSection() {
-    const { ctaSection } = pageContent;
+async function CtaSection() {
+    const { ctaSection } = await getPageContent();
   return (
     <section id="contact" className="py-16 md:py-24 bg-secondary">
       <div className="container text-center">

@@ -2,12 +2,16 @@
 import { Metadata } from "next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getPageContent } from "@/lib/page-content-db";
+import { HeroForm } from "@/components/admin/content/hero-form";
 
 export const metadata: Metadata = {
     title: "Gerenciar Conteúdo da Página Inicial",
 };
 
-export default function ContentManagementPage() {
+export default async function ContentManagementPage() {
+    const pageContent = await getPageContent();
+
     return (
         <div className="space-y-6">
             <div>
@@ -28,10 +32,10 @@ export default function ContentManagementPage() {
                     <Card>
                         <CardHeader>
                             <CardTitle>Seção Hero</CardTitle>
-                            <CardDescription>A primeira seção que os visitantes veem. Edite o título, subtítulo e a imagem de fundo.</CardDescription>
+                            <CardDescription>A primeira seção que os visitantes veem. Edite o título, subtítulo e o texto do botão de ação.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-muted-foreground">(Funcionalidade de edição em breve)</p>
+                           <HeroForm heroContent={pageContent.hero} />
                         </CardContent>
                     </Card>
                 </TabsContent>
