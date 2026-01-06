@@ -1,8 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { OrcamentoSchema, type Orcamento } from "@/lib/types";
+import { OrcamentoSchema, type Orcamento, ColaboradorSchema, type Colaborador } from "@/lib/types";
 import { addOrcamento, deleteOrcamento as dbDeleteOrcamento, updateOrcamentoStatus as dbUpdateOrcamentoStatus } from "@/lib/orcamentos-db";
+import { addColaborador as dbAddColaborador, updateColaborador as dbUpdateColaborador, deleteColaborador as dbDeleteColaborador } from "@/lib/colaboradores-db";
+
 
 export async function submitOrcamento(data: Orcamento) {
   const parsedData = OrcamentoSchema.safeParse(data);
@@ -40,5 +42,51 @@ export async function deleteOrcamento(id: string) {
     } catch (error) {
         console.error("Falha ao excluir orçamento:", error);
         throw new Error("Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.");
+    }
+}
+
+// Colaborador Actions
+export async function addColaborador(data: Colaborador) {
+    const parsedData = ColaboradorSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        throw new Error("Dados de colaborador inválidos fornecidos.");
+    }
+
+    try {
+        await dbAddColaborador(parsedData.data);
+        revalidatePath("/admin/colaboradores");
+        return { success: true, message: "Colaborador adicionado com sucesso." };
+    } catch (error) {
+        console.error("Falha ao adicionar colaborador:", error);
+        throw new Error("Ocorreu um erro no servidor.");
+    }
+}
+
+export async function updateColaborador(id: string, data: Colaborador) {
+    const parsedData = ColaboradorSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        throw new Error("Dados de colaborador inválidos fornecidos.");
+    }
+
+    try {
+        await dbUpdateColaborador(id, parsedData.data);
+        revalidatePath("/admin/colaboradores");
+        return { success: true, message: "Colaborador atualizado com sucesso." };
+    } catch (error) {
+        console.error("Falha ao atualizar colaborador:", error);
+        throw new Error("Ocorreu um erro no servidor.");
+    }
+}
+
+export async function deleteColaborador(id: string) {
+    try {
+        await dbDeleteColaborador(id);
+        revalidatePath("/admin/colaboradores");
+        return { success: true, message: "Colaborador excluído com sucesso." };
+    } catch (error) {
+        console.error("Falha ao excluir colaborador:", error);
+        throw new Error("Ocorreu um erro no servidor.");
     }
 }

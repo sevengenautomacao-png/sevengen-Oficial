@@ -9,3 +9,12 @@ export const OrcamentoSchema = z.object({
 });
 
 export type Orcamento = z.infer<typeof OrcamentoSchema>;
+
+export const ColaboradorSchema = z.object({
+  name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+  age: z.coerce.number().min(16, { message: "A idade deve ser de pelo menos 16 anos." }),
+  email: z.string().email({ message: "Por favor, insira um e-mail válido." }),
+  role: z.string().min(2, { message: "O cargo deve ter pelo menos 2 caracteres." }),
+});
+
+export type Colaborador = z.infer<typeof ColaboradorSchema>;

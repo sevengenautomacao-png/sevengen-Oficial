@@ -8,5 +8,10 @@ service cloud.firestore {
       allow create: if true;
       allow read, update, delete: if request.auth != null;
     }
+
+    // Permite que usuários autenticados gerenciem colaboradores.
+    match /colaboradores/{colaboradorId} {
+      allow read, write: if request.auth != null;
+    }
   }
 }
