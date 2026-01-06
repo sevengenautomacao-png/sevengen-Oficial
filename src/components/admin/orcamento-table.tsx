@@ -30,6 +30,53 @@ type OrcamentoTableProps = {
   orcamentos: OrcamentoWithMetadata[];
 };
 
+// Componente isolado para as ações para evitar conflitos de estado
+function OrcamentoActions({
+    orcamento,
+    onViewDetails,
+    onUpdateStatus,
+    onDelete,
+}: {
+    orcamento: OrcamentoWithMetadata;
+    onViewDetails: () => void;
+    onUpdateStatus: (status: "contacted" | "closed") => void;
+    onDelete: () => void;
+}) {
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <MoreHorizontal className="h-4 w-4" />
+                    <span className="sr-only">Ações para {orcamento.name}</span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={onViewDetails}>
+                    Ver Detalhes
+                </DropdownMenuItem>
+                {orcamento.status === 'new' && (
+                    <DropdownMenuItem onClick={() => onUpdateStatus("contacted")}>
+                        Marcar como Contactado
+                    </DropdownMenuItem>
+                )}
+                {orcamento.status === 'contacted' && (
+                    <DropdownMenuItem onClick={() => onUpdateStatus("closed")}>
+                        Marcar como Fechado
+                    </DropdownMenuItem>
+                )}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                    className="text-destructive focus:bg-destructive/10 focus:text-destructive"
+                    onClick={onDelete}
+                >
+                    Excluir
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    );
+}
+
+
 export function OrcamentoTable({ orcamentos: initialOrcamentos }: OrcamentoTableProps) {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -130,36 +177,12 @@ export function OrcamentoTable({ orcamentos: initialOrcamentos }: OrcamentoTable
                   {isClient ? format(new Date(orcamento.submittedAt), "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR }) : '...'}
                 </TableCell>
                 <TableCell className="text-right">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <MoreHorizontal className="h-4 w-4" />
-                        <span className="sr-only">Ações para {orcamento.name}</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem onClick={() => handleViewDetails(orcamento)}>
-                        Ver Detalhes
-                      </DropdownMenuItem>
-                      {orcamento.status === 'new' && (
-                        <DropdownMenuItem onClick={() => handleUpdateStatus(orcamento.id, "contacted")}>
-                            Marcar como Contactado
-                        </DropdownMenuItem>
-                      )}
-                      {orcamento.status === 'contacted' && (
-                        <DropdownMenuItem onClick={() => handleUpdateStatus(orcamento.id, "closed")}>
-                            Marcar como Fechado
-                        </DropdownMenuItem>
-                      )}
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem 
-                        className="text-destructive focus:bg-destructive/10 focus:text-destructive"
-                        onClick={() => handleDelete(orcamento.id)}
-                      >
-                        Excluir
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <OrcamentoActions 
+                    orcamento={orcamento}
+                    onViewDetails={() => handleViewDetails(orcamento)}
+                    onUpdateStatus={(status) => handleUpdateStatus(orcamento.id, status)}
+                    onDelete={() => handleDelete(orcamento.id)}
+                  />
                 </TableCell>
               </TableRow>
             ))}
