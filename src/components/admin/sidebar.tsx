@@ -2,7 +2,7 @@
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Cpu, LayoutDashboard, Home, LogOut } from 'lucide-react';
+import { Cpu, LayoutDashboard, Home, LogOut, Users } from 'lucide-react';
 import {
   SidebarHeader,
   SidebarMenu,
@@ -43,6 +43,14 @@ export function AdminSidebar() {
                     <Link href="/admin">
                         <LayoutDashboard />
                         <span>Pedidos de Orçamento</span>
+                    </Link>
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/admin/colaboradores'} tooltip="Colaboradores">
+                    <Link href="/admin/colaboradores">
+                        <Users />
+                        <span>Colaboradores</span>
                     </Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
