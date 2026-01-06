@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import type { QuoteWithMetadata } from "@/lib/quotes-db";
 import { format } from "date-fns";
+import { ptBR } from 'date-fns/locale';
+
 
 type QuoteTableProps = {
   quotes: QuoteWithMetadata[];
@@ -28,18 +30,18 @@ export function QuoteTable({ quotes }: QuoteTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Customer</TableHead>
-            <TableHead className="hidden md:table-cell">Company</TableHead>
+            <TableHead>Cliente</TableHead>
+            <TableHead className="hidden md:table-cell">Empresa</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead className="hidden lg:table-cell">Submitted</TableHead>
-            <TableHead><span className="sr-only">Actions</span></TableHead>
+            <TableHead className="hidden lg:table-cell">Enviado em</TableHead>
+            <TableHead><span className="sr-only">Ações</span></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {quotes.length === 0 && (
              <TableRow>
                 <TableCell colSpan={5} className="h-24 text-center">
-                    No quote requests yet.
+                    Nenhum pedido de cotação ainda.
                 </TableCell>
              </TableRow>
           )}
@@ -59,25 +61,25 @@ export function QuoteTable({ quotes }: QuoteTableProps) {
                     }
                     className="capitalize"
                 >
-                  {quote.status}
+                  {quote.status === 'new' ? 'novo' : quote.status === 'contacted' ? 'contactado' : 'fechado'}
                 </Badge>
               </TableCell>
               <TableCell className="hidden lg:table-cell">
-                {format(quote.submittedAt, "MMM d, yyyy 'at' h:mm a")}
+                {format(quote.submittedAt, "d 'de' MMMM, yyyy 'às' HH:mm", { locale: ptBR })}
               </TableCell>
               <TableCell className="text-right">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon">
                       <MoreHorizontal className="h-4 w-4" />
-                      <span className="sr-only">Actions for {quote.name}</span>
+                      <span className="sr-only">Ações para {quote.name}</span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem>View Details</DropdownMenuItem>
-                    <DropdownMenuItem>Mark as Contacted</DropdownMenuItem>
+                    <DropdownMenuItem>Ver Detalhes</DropdownMenuItem>
+                    <DropdownMenuItem>Marcar como Contactado</DropdownMenuItem>
                     <DropdownMenuItem className="text-destructive focus:bg-destructive/10 focus:text-destructive">
-                      Delete
+                      Excluir
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

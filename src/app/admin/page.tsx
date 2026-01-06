@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-    title: "Admin Dashboard",
+    title: "Painel Administrativo",
 };
 
 export default async function AdminDashboardPage() {
@@ -13,14 +13,14 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Quote Requests</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Pedidos de Cotação</h1>
         <p className="text-muted-foreground">
-          View and manage submitted quote requests from potential clients.
+          Veja e gerencie os pedidos de cotação enviados por clientes em potencial.
         </p>
       </div>
        <Card>
         <CardHeader>
-          <CardTitle>All Quotes ({quotes.length})</CardTitle>
+          <CardTitle>Todas as Cotações ({quotes.length})</CardTitle>
         </CardHeader>
         <CardContent>
            <QuoteTable quotes={quotes} />

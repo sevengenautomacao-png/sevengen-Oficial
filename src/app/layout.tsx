@@ -6,10 +6,10 @@ import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Sevengen Automation Hub',
-    template: '%s | Sevengen Automation Hub',
+    default: 'Sevengen Automação',
+    template: '%s | Sevengen Automação',
   },
-  description: 'Engineering the Future of Automation.',
+  description: 'Projetando o Futuro da Automação.',
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

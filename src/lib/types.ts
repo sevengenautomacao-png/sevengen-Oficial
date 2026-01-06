@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
 export const QuoteSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+  email: z.string().email({ message: "Por favor, insira um endereço de e-mail válido." }),
   company: z.string().optional(),
   phone: z.string().optional(),
-  projectDetails: z.string().min(10, { message: "Please provide some details about your project." }),
+  projectDetails: z.string().min(10, { message: "Por favor, forneça alguns detalhes sobre o seu projeto." }),
 });
 
 export type Quote = z.infer<typeof QuoteSchema>;

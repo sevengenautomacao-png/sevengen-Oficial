@@ -7,7 +7,7 @@ import { Menu, Cpu } from 'lucide-react';
 import * as React from 'react';
 
 const Logo = () => (
-  <Link href="/" className="flex items-center gap-2" aria-label="Back to homepage">
+  <Link href="/" className="flex items-center gap-2" aria-label="Voltar para a página inicial">
     <Cpu className="h-8 w-8 text-primary" />
     <span className="text-xl font-bold tracking-tight text-primary font-headline">
       Sevengen
@@ -18,13 +18,13 @@ const Logo = () => (
 const NavLinks = ({ className, onLinkClick }: { className?: string; onLinkClick?: () => void }) => (
   <nav className={className}>
     <Link href="/#services" className="text-muted-foreground transition-colors hover:text-foreground" onClick={onLinkClick}>
-      Services
+      Serviços
     </Link>
     <Link href="/#about" className="text-muted-foreground transition-colors hover:text-foreground" onClick={onLinkClick}>
-      About
+      Sobre
     </Link>
     <Link href="/quote" className="text-muted-foreground transition-colors hover:text-foreground" onClick={onLinkClick}>
-      Contact
+      Contato
     </Link>
   </nav>
 );
@@ -41,14 +41,14 @@ export function Header() {
         </div>
         <div className="flex items-center gap-2">
           <Button asChild className="hidden sm:inline-flex">
-            <Link href="/quote">Request a Quote</Link>
+            <Link href="/quote">Pedir Cotação</Link>
           </Button>
           <div className="md:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
                   <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle Menu</span>
+                  <span className="sr-only">Abrir Menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">
@@ -58,7 +58,7 @@ export function Header() {
                 <NavLinks className="flex flex-col space-y-4 px-6" onLinkClick={() => setIsSheetOpen(false)} />
                  <div className="p-6 mt-4">
                     <Button asChild className="w-full">
-                        <Link href="/quote" onClick={() => setIsSheetOpen(false)}>Request a Quote</Link>
+                        <Link href="/quote" onClick={() => setIsSheetOpen(false)}>Pedir Cotação</Link>
                     </Button>
                  </div>
               </SheetContent>

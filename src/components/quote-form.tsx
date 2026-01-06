@@ -39,15 +39,15 @@ export function QuoteForm() {
     try {
       await submitQuote(data);
       toast({
-        title: "Quote Request Sent!",
-        description: "Thank you! We've received your request and will be in touch shortly.",
+        title: "Pedido de Cotação Enviado!",
+        description: "Obrigado! Recebemos seu pedido e entraremos em contato em breve.",
       });
       form.reset();
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request. Please try again.",
+        title: "Oh não! Algo deu errado.",
+        description: "Houve um problema com o seu pedido. Por favor, tente novamente.",
       });
     } finally {
       setIsSubmitting(false);
@@ -63,9 +63,9 @@ export function QuoteForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel>Nome Completo</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input placeholder="João da Silva" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -76,9 +76,9 @@ export function QuoteForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel>Endereço de Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="you@company.com" type="email" {...field} />
+                  <Input placeholder="voce@empresa.com" type="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -89,9 +89,9 @@ export function QuoteForm() {
             name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company (Optional)</FormLabel>
+                <FormLabel>Empresa (Opcional)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your Company Inc." {...field} />
+                  <Input placeholder="Sua Empresa Inc." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -102,9 +102,9 @@ export function QuoteForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone (Optional)</FormLabel>
+                <FormLabel>Telefone (Opcional)</FormLabel>
                 <FormControl>
-                  <Input placeholder="+1 (555) 123-4567" type="tel" {...field} />
+                  <Input placeholder="+55 (11) 99999-9999" type="tel" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -116,10 +116,10 @@ export function QuoteForm() {
           name="projectDetails"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Project Details</FormLabel>
+              <FormLabel>Detalhes do Projeto</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Describe your project requirements, goals, and any other relevant information."
+                  placeholder="Descreva os requisitos do seu projeto, objetivos e qualquer outra informação relevante."
                   className="min-h-[150px]"
                   {...field}
                 />
@@ -130,7 +130,7 @@ export function QuoteForm() {
         />
         <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isSubmitting ? "Submitting..." : "Submit Request"}
+          {isSubmitting ? "Enviando..." : "Enviar Pedido"}
         </Button>
       </form>
     </Form>
