@@ -39,16 +39,20 @@ export function OrcamentoTable({ orcamentos: initialOrcamentos }: OrcamentoTable
 
   React.useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  React.useEffect(() => {
     setOrcamentos(initialOrcamentos);
   }, [initialOrcamentos]);
   
   const handleAction = React.useCallback(async (action: () => Promise<any>, successMessage: string, errorMessage: string) => {
     try {
-      await action();
+      const result = await action();
       toast({
         title: "Sucesso!",
         description: successMessage,
       });
+      return result;
     } catch (error) {
       toast({
         variant: "destructive",
