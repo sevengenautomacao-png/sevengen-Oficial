@@ -3,34 +3,56 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Cpu, PlugZap, GanttChartSquare, ArrowRight } from 'lucide-react';
+import { Cpu, PlugZap, GanttChartSquare, ArrowRight, Wrench, Lightbulb, ShoppingCart, Truck } from 'lucide-react';
 
 const heroImage = PlaceHolderImages.find(p => p.id === 'hero');
+
 const serviceImages = {
-  electrical: PlaceHolderImages.find(p => p.id === 'service-electrical'),
-  electronic: PlaceHolderImages.find(p => p.id === 'service-electronic'),
-  custom: PlaceHolderImages.find(p => p.id === 'service-custom'),
+  distribution: PlaceHolderImages.find(p => p.id === 'service-distribution-control'),
+  engineering: PlaceHolderImages.find(p => p.id === 'service-engineering'),
+  installation: PlaceHolderImages.find(p => p.id === 'service-installation-maintenance'),
+  retail: PlaceHolderImages.find(p => p.id === 'service-retail'),
+  rent: PlaceHolderImages.find(p => p.id === 'service-rent'),
+  repair: PlaceHolderImages.find(p => p.id === 'service-repair'),
 };
 const aboutImage = PlaceHolderImages.find(p => p.id === 'about-team');
 
 const services = [
   {
     icon: <PlugZap className="h-10 w-10 text-primary" />,
-    title: 'Automação Elétrica',
-    description: 'Projeto e implementação de sistemas robustos de automação elétrica para processos industriais.',
-    image: serviceImages.electrical,
-  },
-  {
-    icon: <Cpu className="h-10 w-10 text-primary" />,
-    title: 'Automação Eletrônica',
-    description: 'Desenvolvimento de circuitos eletrônicos personalizados e sistemas embarcados para controle preciso.',
-    image: serviceImages.electronic,
+    title: 'Equipamentos de Energia',
+    description: 'Fabricação de aparelhos para distribuição e controle de energia elétrica, incluindo subestações, quadros de comando e disjuntores.',
+    image: serviceImages.distribution,
   },
   {
     icon: <GanttChartSquare className="h-10 w-10 text-primary" />,
-    title: 'Projetos Personalizados',
-    description: 'Soluções de automação sob medida para atender aos seus desafios e requisitos de negócios exclusivos.',
-    image: serviceImages.custom,
+    title: 'Serviços de Engenharia',
+    description: 'Elaboração e gestão de projetos técnicos em engenharia elétrica, eletrônica, mecânica, de sistemas e de segurança.',
+    image: serviceImages.engineering,
+  },
+  {
+    icon: <Wrench className="h-10 w-10 text-primary" />,
+    title: 'Instalação e Manutenção',
+    description: 'Instalação, alteração e reparo de sistemas de eletricidade, redes de informática, automação predial e sistemas de alarme.',
+    image: serviceImages.installation,
+  },
+  {
+    icon: <ShoppingCart className="h-10 w-10 text-primary" />,
+    title: 'Comércio de Material Elétrico',
+    description: 'Comércio varejista especializado de fios, cabos, condutores, chaves elétricas, lâmpadas, interruptores e tomadas.',
+    image: serviceImages.retail,
+  },
+  {
+    icon: <Truck className="h-10 w-10 text-primary" />,
+    title: 'Aluguel de Equipamentos',
+    description: 'Aluguel e leasing operacional de máquinas e equipamentos comerciais e industriais, como motores, geradores e guindastes.',
+    image: serviceImages.rent,
+  },
+  {
+    icon: <Lightbulb className="h-10 w-10 text-primary" />,
+    title: 'Reparo de Eletroeletrônicos',
+    description: 'Reparo e manutenção de equipamentos eletroeletrônicos de uso pessoal, doméstico e industrial.',
+    image: serviceImages.repair,
   },
 ];
 
@@ -59,7 +81,7 @@ function HeroSection() {
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
-      <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4">
+      <div className="container mx-auto relative h-full flex flex-col items-center justify-center text-center text-white px-4">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md font-headline">
           Projetando o Futuro da Automação
         </h1>
@@ -126,7 +148,7 @@ function AboutSection() {
             Desde a nossa fundação, a Sevengen está na vanguarda da indústria de automação. Nossa missão é capacitar empresas com sistemas de automação inteligentes, confiáveis e eficientes que impulsionam o crescimento e a inovação.
           </p>
           <p className="mt-4 text-muted-foreground">
-            Nossa equipe de engenheiros especialistas traz décadas de experiência combinada em disciplinas elétricas и eletrônicas, garantindo uma abordagem holística para cada projeto que realizamos. Estamos comprometidos com a qualidade, segurança e satisfação do cliente.
+            Nossa equipe de engenheiros especialistas traz décadas de experiência combinada em disciplinas elétricas e eletrônicas, garantindo uma abordagem holística para cada projeto que realizamos. Estamos comprometidos com a qualidade, segurança e satisfação do cliente.
           </p>
         </div>
         <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">

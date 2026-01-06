@@ -7,22 +7,40 @@
       "imageHint": "automação industrial"
     },
     {
-      "id": "service-electrical",
-      "description": "Close de um painel elétrico com muitos fios.",
-      "imageUrl": "https://images.unsplash.com/photo-1607631697491-61972eecf928?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2FsJTIwcGFuZWx8ZW58MHx8fHwxNzY3NjM0MTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "painel elétrico"
+      "id": "service-distribution-control",
+      "description": "Um quadro de distribuição de energia elétrica industrial.",
+      "imageUrl": "https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxxdWFkcm8lMjBkaXN0cmlidWklQzMlQTclQzMlQTNvfGVufDB8fHx8MTc2NzcxNzEyOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "quadro distribuição"
     },
     {
-      "id": "service-electronic",
-      "description": "Uma placa de circuito impresso complexa com microchips.",
-      "imageUrl": "https://images.unsplash.com/photo-1697952431907-8542919a16b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaXJjdWl0JTIwYm9hcmR8ZW58MHx8fHwxNzY3NzAxNzI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "placa de circuito"
+      "id": "service-engineering",
+      "description": "Engenheiros analisando projetos em um tablet em um canteiro de obras.",
+      "imageUrl": "https://images.unsplash.com/photo-1628377236770-6733e8d7a1e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZW5nZW5oZWlyb3MlMjBvYnJhfGVufDB8fHx8MTc2NzcxNzEyOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "engenheiros obra"
     },
     {
-      "id": "service-custom",
-      "description": "Engenheiros colaborando sobre um projeto técnico.",
-      "imageUrl": "https://images.unsplash.com/photo-1763198302302-b4b42cf73013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlbmdpbmVlcnMlMjBibHVlcHJpbnR8ZW58MHx8fHwxNzY3NzE2MjIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "engenheiros projeto"
+      "id": "service-installation-maintenance",
+      "description": "Técnico realizando manutenção em um painel elétrico.",
+      "imageUrl": "https://images.unsplash.com/photo-1612203264166-e00118d63b94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYW51dGVuJUMzJUE3JUMzJUEzbyUyMGVsJUMzJUE5dHJpY2F8ZW58MHx8fHwxNzY3NzE3MTI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "manutenção elétrica"
+    },
+    {
+      "id": "service-retail",
+      "description": "Prateleiras de uma loja de material elétrico com fios, disjuntores e outros componentes.",
+      "imageUrl": "https://images.unsplash.com/photo-1735529576077-d3792e43bab8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsb2phJTIwZWwlQzMlQTl0cmljb3N8ZW58MHx8fHwxNzY3NzE3MTI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "loja elétricos"
+    },
+    {
+      "id": "service-rent",
+      "description": "Diversos equipamentos industriais, como geradores e empilhadeiras, disponíveis para aluguel.",
+      "imageUrl": "https://picsum.photos/seed/5/600/400",
+      "imageHint": "aluguel equipamentos"
+    },
+    {
+      "id": "service-repair",
+      "description": "Técnico consertando uma placa de circuito eletrônico em uma bancada de trabalho.",
+      "imageUrl": "https://images.unsplash.com/photo-1646092970097-63189b03f9de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyZXBhcm8lMjBlbGV0ciVDMyVCNG5pY298ZW58MHx8fHwxNzY3NzE3MTI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "reparo eletrônico"
     },
     {
       "id": "about-team",
