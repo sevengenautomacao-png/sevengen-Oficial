@@ -2,7 +2,7 @@
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Cpu, LayoutDashboard, Home, LogOut, Users } from 'lucide-react';
+import { Cpu, LayoutDashboard, Home, LogOut, Users, FileImage } from 'lucide-react';
 import {
   SidebarHeader,
   SidebarMenu,
@@ -51,6 +51,14 @@ export function AdminSidebar() {
                     <Link href="/admin/colaboradores">
                         <Users />
                         <span>Colaboradores</span>
+                    </Link>
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/admin/content'} tooltip="Gerenciar Página Inicial">
+                    <Link href="/admin/content">
+                        <FileImage />
+                        <span>Gerenciar Página Inicial</span>
                     </Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
