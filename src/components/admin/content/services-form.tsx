@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, Sparkles } from 'lucide-react';
+import { Loader2, Trash2 } from 'lucide-react';
 import { CardFooter } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -54,7 +54,7 @@ export function ServicesForm({ services }: ServicesFormProps) {
     },
   });
 
-  const { fields } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: "services",
   });
@@ -80,10 +80,21 @@ export function ServicesForm({ services }: ServicesFormProps) {
     }
   }
 
+  function addService() {
+    append({
+        title: "Novo Serviço",
+        description: "Descrição do novo serviço.",
+        icon: "Cpu",
+        imageId: `service-${Date.now()}`,
+        imageUrl: '',
+        comingSoon: true,
+    });
+  }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
           {fields.map((field, index) => (
             <AccordionItem value={`item-${index}`} key={field.id}>
               <AccordionTrigger>
@@ -96,6 +107,18 @@ export function ServicesForm({ services }: ServicesFormProps) {
               </AccordionTrigger>
               <AccordionContent>
                 <div className="space-y-4 p-1">
+                    <div className="flex justify-end">
+                        <Button 
+                            type="button" 
+                            variant="ghost" 
+                            size="icon" 
+                            onClick={() => remove(index)}
+                            disabled={fields.length <= 1}
+                        >
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                            <span className="sr-only">Remover serviço</span>
+                        </Button>
+                    </div>
                   <FormField
                     control={form.control}
                     name={`services.${index}.title`}
@@ -172,6 +195,14 @@ export function ServicesForm({ services }: ServicesFormProps) {
             </AccordionItem>
           ))}
         </Accordion>
+
+        <Button
+            type="button"
+            variant="outline"
+            onClick={addService}
+        >
+            Adicionar Serviço
+        </Button>
         
         <CardFooter className="border-t px-6 py-4 mt-6">
           <Button type="submit" disabled={isSubmitting}>
