@@ -72,7 +72,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {year} Sevengen Automação. Todos os direitos reservados.</p>
+          <p className="text-center sm:text-left">&copy; {year} Sevengen Automação. Todos os direitos reservados.</p>
           <Link href="/admin" className="mt-4 sm:mt-0 opacity-50 hover:opacity-100 transition-opacity">
             Admin
           </Link>

@@ -1,5 +1,6 @@
 import { QuoteForm } from "@/components/quote-form";
 import { Metadata } from "next";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Solicitar uma Cotação",
@@ -23,5 +24,3 @@ export default function QuotePage() {
     </div>
   );
 }
-
-import { Card, CardContent } from "@/components/ui/card";
