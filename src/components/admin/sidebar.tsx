@@ -1,7 +1,8 @@
+
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Cpu, LayoutDashboard, Home } from 'lucide-react';
+import { Cpu, LayoutDashboard, Home, LogOut } from 'lucide-react';
 import {
   SidebarHeader,
   SidebarMenu,
@@ -12,9 +13,17 @@ import {
   Sidebar,
 } from '@/components/ui/sidebar';
 import { Separator } from '@/components/ui/separator';
+import { signOutUser } from '@/lib/firebase/auth';
+import { useRouter } from 'next/navigation';
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    router.push('/login');
+  };
 
   return (
     <Sidebar collapsible="icon" className="hidden border-r bg-background md:block">
@@ -48,6 +57,12 @@ export function AdminSidebar() {
                         <Home />
                         <span>Voltar ao Site</span>
                     </Link>
+                </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+                <SidebarMenuButton onClick={handleSignOut} tooltip="Sair">
+                    <LogOut />
+                    <span>Sair</span>
                 </SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>

@@ -1,3 +1,4 @@
+
 "use client"
 
 import Link from 'next/link';
@@ -6,6 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Menu, Cpu } from 'lucide-react';
 import * as React from 'react';
 import { usePathname } from 'next/navigation';
+import { useAuth } from '@/hooks/use-auth';
 
 const Logo = () => (
   <Link href="/" className="flex items-center gap-2" aria-label="Voltar para a página inicial">
@@ -33,8 +35,9 @@ const NavLinks = ({ className, onLinkClick }: { className?: string; onLinkClick?
 export function Header() {
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
   const pathname = usePathname();
+  const { loading } = useAuth();
 
-  if (pathname.startsWith('/admin')) {
+  if (pathname.startsWith('/admin') || pathname.startsWith('/login') || loading) {
     return null;
   }
   

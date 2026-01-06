@@ -1,8 +1,10 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { AuthProvider } from '@/hooks/use-auth';
 
 export const metadata: Metadata = {
   title: {
@@ -28,12 +30,14 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased flex min-h-screen flex-col bg-background">
-        <Header />
-        <main className="flex-1 w-full max-w-screen-2xl mx-auto">
-          {children}
-        </main>
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <Header />
+          <main className="flex-1 w-full max-w-screen-2xl mx-auto">
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );
