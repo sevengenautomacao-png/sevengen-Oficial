@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -48,13 +49,13 @@ export function Footer() {
             <div>
               <p className="font-medium text-foreground">Contato</p>
               <div className="mt-4 flex flex-col space-y-2 text-sm">
-                <a href="mailto:contato@sevengen.com" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <a href="mailto:contato@sevengenautomacao.com.br" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Mail className="h-4 w-4" />
-                  <span>contato@sevengen.com</span>
+                  <span>contato@sevengenautomacao.com.br</span>
                 </a>
-                <a href="tel:+5511999999999" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                <a href="tel:+5541997884294" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Phone className="h-4 w-4" />
-                  <span>+55 (11) 99999-9999</span>
+                  <span>(41) 99788-4294</span>
                 </a>
               </div>
             </div>
