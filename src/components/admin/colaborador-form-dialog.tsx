@@ -35,6 +35,9 @@ type ColaboradorFormDialogProps = {
   onSuccess: (updatedColaboradores: ColaboradorWithId[]) => void;
 };
 
+// We don't want to validate the password on the client, as it's generated on the server
+const FormSchema = ColaboradorSchema.omit({ password: true });
+
 export function ColaboradorFormDialog({
   isOpen,
   onOpenChange,
@@ -46,8 +49,8 @@ export function ColaboradorFormDialog({
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const isEditing = !!colaborador;
 
-  const form = useForm<Colaborador>({
-    resolver: zodResolver(ColaboradorSchema),
+  const form = useForm<Omit<Colaborador, 'password'>>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       name: "",
       age: 0,
@@ -69,7 +72,7 @@ export function ColaboradorFormDialog({
     }
   }, [colaborador, form, isOpen]);
 
-  async function onSubmit(data: Colaborador) {
+  async function onSubmit(data: Omit<Colaborador, 'password'>) {
     setIsSubmitting(true);
     try {
       if (isEditing && colaborador) {
@@ -82,13 +85,16 @@ export function ColaboradorFormDialog({
         });
       } else {
         const result = await addColaborador(data);
-        const newColaborador = { ...data, id: result.id };
-        const updatedList = [...colaboradores, newColaborador].sort((a,b) => a.name.localeCompare(b.name));
-        onSuccess(updatedList);
-        toast({
-          title: "Colaborador Adicionado!",
-          description: "O novo colaborador foi adicionado à equipe.",
-        });
+        if (result.success && result.data) {
+            const newColaborador: ColaboradorWithId = { ...data, id: result.data.id, password: result.data.password };
+            const updatedList = [...colaboradores, newColaborador].sort((a,b) => a.name.localeCompare(b.name));
+            onSuccess(updatedList);
+            toast({
+            title: "Colaborador Adicionado!",
+            description: `A senha gerada é: ${result.data.password}`,
+            duration: 9000,
+            });
+        }
       }
       onOpenChange(false);
     } catch (error) {

@@ -21,6 +21,7 @@ function fromFirestore(
     age: data.age,
     email: data.email,
     role: data.role,
+    password: data.password,
   };
 }
 
@@ -45,7 +46,7 @@ export async function getColaboradores(): Promise<ColaboradorWithId[]> {
   }
 }
 
-export async function updateColaborador(id: string, colaborador: Colaborador): Promise<void> {
+export async function updateColaborador(id: string, colaborador: Omit<Colaborador, 'password'>): Promise<void> {
   const docRef = colaboradoresCollection.doc(id);
   await docRef.update(colaborador);
 }

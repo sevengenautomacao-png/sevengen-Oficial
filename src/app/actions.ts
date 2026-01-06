@@ -52,19 +52,25 @@ export async function addColaborador(data: Colaborador) {
     if (!parsedData.success) {
         throw new Error("Dados de colaborador inválidos fornecidos.");
     }
+    
+    // Generate a random password
+    const password = Math.random().toString(36).slice(-8);
+    const newColaboradorData = { ...parsedData.data, password };
 
     try {
-        await dbAddColaborador(parsedData.data);
+        const { id } = await dbAddColaborador(newColaboradorData);
         revalidatePath("/admin/colaboradores");
-        return { success: true, message: "Colaborador adicionado com sucesso." };
+        return { success: true, message: "Colaborador adicionado com sucesso.", data: { id, password } };
     } catch (error) {
         console.error("Falha ao adicionar colaborador:", error);
         throw new Error("Ocorreu um erro no servidor.");
     }
 }
 
-export async function updateColaborador(id: string, data: Colaborador) {
-    const parsedData = ColaboradorSchema.safeParse(data);
+export async function updateColaborador(id: string, data: Omit<Colaborador, 'password'>) {
+    // We remove password from the schema validation for updates
+    const updateSchema = ColaboradorSchema.omit({ password: true });
+    const parsedData = updateSchema.safeParse(data);
 
     if (!parsedData.success) {
         throw new Error("Dados de colaborador inválidos fornecidos.");

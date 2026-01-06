@@ -15,6 +15,7 @@ export const ColaboradorSchema = z.object({
   age: z.coerce.number().min(16, { message: "A idade deve ser de pelo menos 16 anos." }),
   email: z.string().email({ message: "Por favor, insira um e-mail válido." }),
   role: z.string().min(2, { message: "O cargo deve ter pelo menos 2 caracteres." }),
+  password: z.string().optional(),
 });
 
 export type Colaborador = z.infer<typeof ColaboradorSchema>;
