@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -25,7 +26,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { signInWithEmail } from '@/lib/firebase/auth';
-import { Loader2, Cpu } from 'lucide-react';
+import { Loader2, Cpu, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 
 const LoginSchema = z.object({
@@ -142,7 +143,12 @@ export default function LoginPage() {
           </Form>
         </CardContent>
       </Card>
+      <Button asChild variant="link" className="mt-4 text-muted-foreground">
+        <Link href="/">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Voltar para o site
+        </Link>
+      </Button>
     </div>
   );
 }
-
