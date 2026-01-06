@@ -44,6 +44,10 @@ let orcamentos: OrcamentoWithMetadata[] = [
 
 let counter = orcamentos.length;
 
+// NOTE: This is a mock implementation. In a real app, this would interact with a database.
+// The Firebase implementation has been provided in the previous step, but for the sake of
+// this mock, we will continue to use an in-memory array.
+
 export async function addOrcamento(orcamento: Orcamento): Promise<OrcamentoWithMetadata> {
   counter++;
   const newOrcamento: OrcamentoWithMetadata = {
@@ -63,4 +67,17 @@ export async function getOrcamentos(): Promise<OrcamentoWithMetadata[]> {
 
 export async function getOrcamentoById(id: string): Promise<OrcamentoWithMetadata | undefined> {
     return orcamentos.find(o => o.id === id);
+}
+
+export async function updateOrcamentoStatus(id: string, status: 'new' | 'contacted' | 'closed'): Promise<OrcamentoWithMetadata | undefined> {
+    const index = orcamentos.findIndex(o => o.id === id);
+    if (index !== -1) {
+        orcamentos[index].status = status;
+        return orcamentos[index];
+    }
+    return undefined;
+}
+
+export async function deleteOrcamento(id: string): Promise<void> {
+    orcamentos = orcamentos.filter(o => o.id !== id);
 }
