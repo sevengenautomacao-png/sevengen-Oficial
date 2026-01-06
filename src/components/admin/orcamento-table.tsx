@@ -30,18 +30,25 @@ type OrcamentoTableProps = {
   orcamentos: OrcamentoWithMetadata[];
 };
 
-export function OrcamentoTable({ orcamentos }: OrcamentoTableProps) {
+export function OrcamentoTable({ orcamentos: initialOrcamentos }: OrcamentoTableProps) {
   const { toast } = useToast();
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const [selectedOrcamento, setSelectedOrcamento] = React.useState<OrcamentoWithMetadata | null>(null);
+  const [orcamentos, setOrcamentos] = React.useState(initialOrcamentos);
 
-  const handleAction = async (action: () => Promise<any>, successMessage: string, errorMessage: string) => {
+  React.useEffect(() => {
+    setOrcamentos(initialOrcamentos);
+  }, [initialOrcamentos]);
+
+  const handleAction = React.useCallback(async (action: () => Promise<any>, successMessage: string, errorMessage: string) => {
     try {
-      await action();
+      const result = await action();
+      // Assume server action revalidates path and we get new props
       toast({
         title: "Sucesso!",
         description: successMessage,
       });
+      return result;
     } catch (error) {
       toast({
         variant: "destructive",
@@ -49,36 +56,31 @@ export function OrcamentoTable({ orcamentos }: OrcamentoTableProps) {
         description: errorMessage,
       });
     }
-  };
+  }, [toast]);
 
-  const handleMarkAsContacted = (id: string) => {
+  const handleUpdateStatus = React.useCallback((id: string, status: "contacted" | "closed") => {
+    const successMessage = status === 'contacted' ? "Orçamento marcado como 'contactado'." : "Orçamento marcado como 'fechado'.";
     handleAction(
-      () => updateOrcamentoStatus(id, "contacted"),
-      "Orçamento marcado como 'contactado'.",
+      () => updateOrcamentoStatus(id, status),
+      successMessage,
       "Falha ao atualizar o status do orçamento."
     );
-  };
-  
-  const handleMarkAsClosed = (id: string) => {
-    handleAction(
-      () => updateOrcamentoStatus(id, "closed"),
-      "Orçamento marcado como 'fechado'.",
-      "Falha ao atualizar o status do orçamento."
-    );
-  };
+  }, [handleAction]);
 
-  const handleDelete = (id: string) => {
+  const handleDelete = React.useCallback((id: string) => {
     handleAction(
       () => deleteOrcamento(id),
       "Orçamento excluído com sucesso.",
       "Falha ao excluir o orçamento."
-    );
-  };
+    ).then(() => {
+       setOrcamentos(prev => prev.filter(o => o.id !== id));
+    });
+  }, [handleAction]);
   
-  const handleViewDetails = (orcamento: OrcamentoWithMetadata) => {
+  const handleViewDetails = React.useCallback((orcamento: OrcamentoWithMetadata) => {
       setSelectedOrcamento(orcamento);
       setIsDialogOpen(true);
-  }
+  }, []);
 
   return (
     <>
@@ -136,12 +138,12 @@ export function OrcamentoTable({ orcamentos }: OrcamentoTableProps) {
                         Ver Detalhes
                       </DropdownMenuItem>
                       {orcamento.status === 'new' && (
-                        <DropdownMenuItem onClick={() => handleMarkAsContacted(orcamento.id)}>
+                        <DropdownMenuItem onClick={() => handleUpdateStatus(orcamento.id, "contacted")}>
                             Marcar como Contactado
                         </DropdownMenuItem>
                       )}
                       {orcamento.status === 'contacted' && (
-                        <DropdownMenuItem onClick={() => handleMarkAsClosed(orcamento.id)}>
+                        <DropdownMenuItem onClick={() => handleUpdateStatus(orcamento.id, "closed")}>
                             Marcar como Fechado
                         </DropdownMenuItem>
                       )}
