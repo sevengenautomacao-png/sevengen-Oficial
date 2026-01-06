@@ -6,6 +6,7 @@ export type Service = {
     title: string;
     description: string;
     imageId: string;
+    imageUrl?: string; 
 }
 
 export type PageContent = {

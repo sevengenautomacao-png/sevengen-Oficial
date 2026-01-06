@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { OrcamentoSchema, type Orcamento, ColaboradorSchema, type Colaborador } from "@/lib/types";
 import { addOrcamento, deleteOrcamento as dbDeleteOrcamento, updateOrcamentoStatus as dbUpdateOrcamentoStatus } from "@/lib/orcamentos-db";
 import { addColaborador as dbAddColaborador, updateColaborador as dbUpdateColaborador, deleteColaborador as dbDeleteColaborador } from "@/lib/colaboradores-db";
-import { updateHeroContent as dbUpdateHeroContent, PageContent } from "@/lib/page-content-db";
+import { updateHeroContent as dbUpdateHeroContent, updateServicesContent as dbUpdateServicesContent, PageContent, Service } from "@/lib/page-content-db";
 
 
 export async function submitOrcamento(data: Orcamento) {
@@ -109,5 +109,17 @@ export async function updateHeroContent(data: PageContent['hero']) {
     } catch (error) {
         console.error("Falha ao atualizar a seção Hero:", error);
         throw new Error("Ocorreu um erro no servidor ao atualizar a seção Hero.");
+    }
+}
+
+export async function updateServicesContent(data: Service[]) {
+    try {
+        await dbUpdateServicesContent(data);
+        revalidatePath('/'); // Revalidate home page
+        revalidatePath('/admin/content'); // Revalidate content page
+        return { success: true, message: "Seção de Serviços atualizada com sucesso!" };
+    } catch (error) {
+        console.error("Falha ao atualizar a seção de Serviços:", error);
+        throw new Error("Ocorreu um erro no servidor ao atualizar a seção de Serviços.");
     }
 }

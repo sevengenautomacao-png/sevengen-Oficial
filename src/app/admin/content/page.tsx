@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPageContent } from "@/lib/page-content-db";
 import { HeroForm } from "@/components/admin/content/hero-form";
+import { ServicesForm } from "@/components/admin/content/services-form";
 
 export const metadata: Metadata = {
     title: "Gerenciar Conteúdo da Página Inicial",
@@ -47,7 +48,7 @@ export default async function ContentManagementPage() {
                             <CardDescription>Gerencie os cards de serviços, incluindo ícones, títulos, descrições e imagens.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                             <p className="text-sm text-muted-foreground">(Funcionalidade de edição em breve)</p>
+                             <ServicesForm services={pageContent.services} />
                         </CardContent>
                     </Card>
                 </TabsContent>

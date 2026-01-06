@@ -2,7 +2,7 @@
 'use server';
 
 import { adminDb } from '@/lib/firebase/firebase-admin';
-import { pageContent as defaultContent, PageContent } from './page-content';
+import { pageContent as defaultContent, PageContent, Service } from './page-content';
 import { DocumentReference } from 'firebase-admin/firestore';
 
 const contentDocRef = adminDb.collection('pageContent').doc('home');
@@ -33,4 +33,8 @@ export async function updatePageContent(newContent: Partial<PageContent>): Promi
 
 export async function updateHeroContent(heroData: PageContent['hero']) {
     await contentDocRef.update({ hero: heroData });
+}
+
+export async function updateServicesContent(servicesData: Service[]) {
+    await contentDocRef.update({ services: servicesData });
 }

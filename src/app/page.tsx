@@ -78,14 +78,16 @@ async function ServicesSection() {
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services.map((service) => {
             const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+            const imageUrl = service.imageUrl || serviceImage?.imageUrl;
+
             return (
                 <Card key={service.title} className="flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
-                {serviceImage && (
+                {imageUrl && (
                     <div className="aspect-[16/10] relative">
                     <Image
-                        src={serviceImage.imageUrl}
-                        alt={serviceImage.description}
-                        data-ai-hint={serviceImage.imageHint}
+                        src={imageUrl}
+                        alt={serviceImage?.description || service.title}
+                        data-ai-hint={serviceImage?.imageHint || ''}
                         width={600}
                         height={400}
                         className="object-cover w-full h-full"
@@ -93,7 +95,7 @@ async function ServicesSection() {
                     </div>
                 )}
                 <CardHeader className="flex-row items-start gap-4">
-                    {serviceIcons[service.icon]}
+                    {serviceIcons[service.icon] || <Cpu className="h-10 w-10 text-primary" />}
                     <CardTitle className="text-xl font-headline mt-2">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
