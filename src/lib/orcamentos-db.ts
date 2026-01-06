@@ -51,8 +51,14 @@ export async function addOrcamento(
 
 export async function getOrcamentos(): Promise<OrcamentoWithMetadata[]> {
   const q = query(orcamentosCollection, orderBy("submittedAt", "desc"));
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(fromFirestore);
+  try {
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(fromFirestore);
+  } catch (error) {
+    console.error("Erro ao buscar orçamentos:", error);
+    // Retorna um array vazio em caso de erro para não quebrar a página de admin.
+    return [];
+  }
 }
 
 export async function getOrcamentoById(

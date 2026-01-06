@@ -1,21 +1,25 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  projectId: "demoproject-1234",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+// Em modo de desenvolvimento, poderíamos conectar ao emulador do Firestore se ele estiver rodando.
+// Para este ambiente, vamos conectar diretamente a uma instância de demonstração se não estivermos em produção.
+if (process.env.NODE_ENV !== 'production') {
+    try {
+        connectFirestoreEmulator(db, 'localhost', 8080);
+    } catch (error) {
+        console.log("Firestore Emulator not running, using cloud instance for demo.");
+    }
+}
