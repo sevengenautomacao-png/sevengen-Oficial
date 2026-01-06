@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Cpu } from 'lucide-react';
 import * as React from 'react';
+import { usePathname } from 'next/navigation';
 
 const Logo = () => (
   <Link href="/" className="flex items-center gap-2" aria-label="Voltar para a página inicial">
@@ -31,10 +32,15 @@ const NavLinks = ({ className, onLinkClick }: { className?: string; onLinkClick?
 
 export function Header() {
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
+  const pathname = usePathname();
 
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+  
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
+      <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto">
         <div className="flex items-center gap-4 md:gap-10">
           <Logo />
           <NavLinks className="hidden gap-6 md:flex" />
@@ -53,9 +59,8 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="left">
                 <SheetHeader>
-                  <SheetTitle>
+                   <SheetTitle className="sr-only">Menu de Navegação</SheetTitle>
                     <Logo />
-                  </SheetTitle>
                 </SheetHeader>
                 <NavLinks className="mt-6 flex flex-col space-y-4 px-0" onLinkClick={() => setIsSheetOpen(false)} />
                  <div className="mt-6">
